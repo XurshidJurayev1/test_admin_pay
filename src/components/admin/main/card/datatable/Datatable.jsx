@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "./datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { connect } from "react-redux";
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
@@ -19,7 +20,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to="/admin/card/view" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -53,4 +54,11 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+const mapStateToProps = (state) => {
+  return{
+    list: state
+  }
+
+}
+
+export default connect(mapStateToProps, {})(Datatable);

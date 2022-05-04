@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './components/pages/App.scss';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/admin/Dashboard';
@@ -35,11 +35,32 @@ const App = (props) => {
   const [admin, setAdmin] = useState(true);
 
 
+  const func = () => {
+    if (props.user.length > 0) {
+      switch (props.role[0]) {
+        case 'admin' || 10 :
+          return setAdmin(true);
+        default:
+          return null;
+      }
+    } else {
+      return null;
+    }
+
+  };
+
+  useEffect(() => {
+    func();
+    console.log(props);
+
+  }, [props.user]);
+
   // if(props.user.role === 'admin'){
   //   setAdmin(true)
   // }else {
   //   setAdmin(false)
   // }
+  // console.log(props);
 
   return (
     <div className={darkMode ? 'app dark' : 'app'}>

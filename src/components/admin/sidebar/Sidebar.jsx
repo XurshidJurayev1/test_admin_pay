@@ -16,14 +16,16 @@ import PanoramaPhotosphereIcon from '@mui/icons-material/PanoramaPhotosphere';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ViewListIcon from '@mui/icons-material/ViewList';
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { useContext, useEffect, useState } from 'react';
 import { DarkModeContext } from '../../../context/darkModeContext';
+import { connect } from 'react-redux';
+import {logoutUser} from '../../../action'
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const { dispatch, sidebar } = useContext(DarkModeContext);
-
+const navigate = useNavigate()
   const [width, setWidth] = useState(window.innerWidth);
   const [slider1, setSlider1] = useState(false);
   const [card1, setCard1] = useState(window.innerWidth);
@@ -62,6 +64,11 @@ const Sidebar = () => {
     transform: 'translateX(-200px)',
   };
 
+  const logout = () => {
+    navigate('/login')
+    props.logoutUser()
+  }
+
 
   return (
     <div className="sidebar" style={sidebar ? active : unactive}>
@@ -77,10 +84,12 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
+          <Link to='/'>
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
+          </Link>
           <Link to="/admin/slider/list" style={{ textDecoration: 'none' }}>
             <li>
               <PanoramaPhotosphereIcon className="icon" />
@@ -104,12 +113,12 @@ const Sidebar = () => {
           </Link>
 
 
-          <Link to="/products" style={{ textDecoration: 'none' }}>
+          {/* <Link  style={{ textDecoration: 'none' }}> */}
             <li>
               <StoreIcon className="icon" />
               <span>Products</span>
             </li>
-          </Link>
+          {/* </Link> */}
           <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>
@@ -145,7 +154,7 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li onClick={logout}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>
@@ -165,4 +174,8 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+const mapStateToProps = (state) => {
+  return {}
+}
+
+export default connect(mapStateToProps, {logoutUser})(Sidebar);

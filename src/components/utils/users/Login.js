@@ -44,12 +44,28 @@ const Login = (props) => {
 
   } 
 
-  if(props.user.role === 'admin' ){
-    navigate('/admin')
-  }else if(props.user.role === "subscripte" ){
-    navigate('/')
-  }
+  
   console.log(props);
+
+  useEffect(()=> {
+    if(props.user.role === 'admin' ){
+      navigate('/admin')
+    }else if(props.user.role === "subscripte" ){
+      navigate('/')
+    }
+    // if (props.user.length > 0) {
+    //   switch (props.role[0]) {
+    //     case 'admin' :
+    //       return navigate('/admin')
+    //     case 'subscripte'  :
+    //       return navigate('/')
+    //     default:
+    //       return null;
+    //   }
+    // } else {
+    //   return null;
+    // }
+  }, [props.user])
 
 
 

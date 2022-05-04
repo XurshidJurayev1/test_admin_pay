@@ -48,3 +48,14 @@ export const updateUser = (user, id, token) => async (dispatch) => {
         payload: res.data
     })
 }
+
+// ----- card ----
+
+
+export const listCard = () => async (dispatch) => {
+    const res = await api.get('/card/list')
+    dispatch({
+        type: 'LIST_CARD',
+        payload: res.data
+    })
+}
