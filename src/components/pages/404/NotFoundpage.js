@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Not_404 from '../../../images/404.png';
 import './NotFoundpage.scss';
 
@@ -10,6 +11,7 @@ const Notfoundpage = () => {
           <h2>404 PAGE NOT FOUND</h2>
           <p>Check that you typed the address correctly, go back to your previous page or try using our site search to
             find something specific.</p>
+            <Link to='/'>back to home</Link>
         </div>
         <div className="NotFoundpage__col">
           <div className="NotFoundpage__img">

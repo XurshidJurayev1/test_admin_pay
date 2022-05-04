@@ -2,13 +2,29 @@ import "./new.scss";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 
-const SliderNew = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
+
+const initialstate = {
+  name: '',
+  password: 'email',
+  email: '',
+}
+
+const UserNew = ({ inputs, title }) => {
+  const [user, setUser] = useState(initialstate)
+  const [file, setFile] = useState("")
+
+
+const submit = () => {
+  const formdara = new FormData()
+  console.log(user, file);
+}
+
 
   return (
     <div className="new">
+      <div className="newContainer">
         <div className="top">
-          <h1>{title}</h1>
+          <h1>Add user</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -22,7 +38,7 @@ const SliderNew = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form>
+            <form >
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -35,18 +51,26 @@ const SliderNew = ({ inputs, title }) => {
                 />
               </div>
 
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
+                <div className="formInput">
+                  <label>Your name</label>
+                  <input type='text' placeholder='Your  name' value={user.name} onChange={(e)=> setUser({...user, name: e.target.value})} />
                 </div>
-              ))}
-              <button type='submit'>Send</button>
+                <div className="formInput">
+                  <label>Your email</label>
+                  <input type='email' placeholder='Your email'value={user.email} onChange={(e)=> setUser({...user, email: e.target.value})} />
+                </div>
+                <div className="formInput">
+                  <label>password</label>
+                  <input type='password' placeholder='password' value={user.password} onChange={(e)=> setUser({...user, password: e.target.value})}/>
+                </div>
+              
+              <button type='button' onClick={ submit} >Send</button>
             </form>
           </div>
+        </div>
         </div>
     </div>
   );
 };
 
-export default SliderNew;
+export default UserNew;

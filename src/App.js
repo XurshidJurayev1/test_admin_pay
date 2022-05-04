@@ -32,12 +32,12 @@ import CardEdit from './components/admin/main/card/Edit';
 
 const App = (props) => {
   const { darkMode } = useContext(DarkModeContext);
-  const [admin, setAdmin] = useState(true);
+  const [admin, setAdmin] = useState(false);
 
 
   const func = () => {
-    if (props.user.length > 0) {
-      switch (props.role[0]) {
+    if (props.user.role) {
+      switch (props.user.role) {
         case 'admin' || 10 :
           return setAdmin(true);
         default:
