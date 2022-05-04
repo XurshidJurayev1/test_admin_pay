@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './components/pages/App.scss';
+import './style/dark.scss';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/admin/Dashboard';
 import Login from './components/utils/users/Login';
@@ -28,6 +29,10 @@ import CardList from './components/admin/main/card/List';
 import CardNew from './components/admin/main/card/New';
 import CardSingle from './components/admin/main/card/Single';
 import CardEdit from './components/admin/main/card/Edit';
+import SliderList from './components/admin/main/slider/List';
+import SliderNew from './components/admin/main/slider/New';
+import SliderSingle from './components/admin/main/slider/Single';
+import SliderEdit from './components/admin/main/slider/SliderEdit';
 
 
 const App = (props) => {
@@ -107,10 +112,10 @@ const App = (props) => {
 
             </Route>
             <Route path="slider">
-              <Route path="list" element={<CardList />} />
-              <Route path="new" element={<CardNew />} />
-              <Route path="view" element={<CardSingle />} />
-              <Route path="edit" element={<CardEdit />} />
+              <Route path="list" element={<SliderList />} />
+              <Route path="new" element={<SliderNew />} />
+              <Route path="view" element={<SliderSingle />} />
+              <Route path="edit" element={<SliderEdit />} />
 
             </Route>
             <Route path="*" element={<Notfoundpage />} />

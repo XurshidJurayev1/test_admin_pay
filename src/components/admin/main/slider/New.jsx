@@ -3,7 +3,18 @@ import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUpload
 import { useState } from 'react';
 
 const SliderNew = ({ inputs, title }) => {
+  const [slider, setSlider] = useState({
+    title: '',
+    text: '',
+  });
   const [file, setFile] = useState('');
+
+  const submit = (e) => {
+    e.preventDefault();
+    const formdata = new FormData();
+
+
+  };
 
   return (
     <div className="new">
@@ -23,25 +34,36 @@ const SliderNew = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form>
+            <form onSubmit={submit}>
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
                   type="file"
+                  required
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
                   style={{ display: 'none' }}
                 />
               </div>
+              <div className="formInput">
+                <label>Title</label>
+                <input
+                  type="text"
+                  placeholder="Please write Slider title"
+                  value={slider.title}
+                  onChange={(e) => setSlider({ ...slider, title: e.target.value })} />
+              </div>
+              <div className="formInput">
+                <label>Text</label>
+                <input
+                  type="text"
+                  placeholder="Please write Slider title"
+                  value={slider.text}
+                  onChange={(e) => setSlider({ ...slider, text: e.target.value })} />
+              </div>
 
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
-                </div>
-              ))}
               <button type="submit">Send</button>
             </form>
           </div>
