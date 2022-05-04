@@ -1,41 +1,44 @@
+import { ImageApi } from '../../../../../Api/ImageApi';
+
 export const userColumns = [
-  { field: 'id', headerName: 'ID', width: 70 },
+  { field: '_id', headerName: 'ID', width: 70 },
+
   {
-    field: 'user',
-    headerName: 'User',
-    width: 230,
-    renderCell: (params) => {
-      return (
-        <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
-          {params.row.username}
-        </div>
-      );
-    },
-  },
-  {
-    field: 'email',
-    headerName: 'Email',
+    field: 'text',
+    headerName: 'text',
     width: 230,
   },
 
   {
-    field: 'age',
-    headerName: 'Age',
-    width: 100,
+    field: 'slug',
+    headerName: 'slug',
+    width: 230,
   },
   {
-    field: 'status',
-    headerName: 'Status',
-    width: 160,
+    field: 'image_path',
+    headerName: 'Image',
+    width: 230,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
+        <div className="cellWithImg">
+          <img className="cellImg" src={`${ImageApi}${params.row.image_path}`} alt={params.row.image_name} />
+          {/*{params.row.username}*/}
         </div>
       );
     },
   },
+  // {
+  //   field: 'status',
+  //   headerName: 'Status',
+  //   width: 160,
+  //   renderCell: (params) => {
+  //     return (
+  //       <div className={`cellWithStatus ${params.row.status}`}>
+  //         {params.row.status}
+  //       </div>
+  //     );
+  //   },
+  // },
 ];
 
 //temporary data

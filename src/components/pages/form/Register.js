@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import {API_URL} from "../../config";
+
+
 const Register = () => {
 	const [data, setData] = useState({
 		name: "",

@@ -1,0 +1,1 @@
+export const ImageApi = 'https://server-back2.herokuapp.com/'

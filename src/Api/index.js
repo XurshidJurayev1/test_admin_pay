@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'https://server-asiapay.herokuapp.com/api/',
+  baseURL: 'https://server-back2.herokuapp.com/api/',
 });

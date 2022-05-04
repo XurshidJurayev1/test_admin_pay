@@ -1,44 +1,63 @@
-import "./single.scss";
+import './single.scss';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { ImageApi } from '../../../../Api/ImageApi';
 
-const CardSingle = () => {
+const CardSingle = (props) => {
+  const card = props.card;
   return (
     <div className="single">
+      <div className="singleContainer">
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to="/admin/card/edit">
+              <div className="editButton">Edit</div>
+            </Link>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                src={
+                  card.image_path
+                    ? `${ImageApi}${card.image_path}`
+                    : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+
+                }
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Jane Doe</h1>
+                <h1 className="itemTitle">{card.title}</h1>
                 <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">janedoe@gmail.com</span>
+                  <span className="itemKey">Text:</span>
+                  <span className="itemValue">{card.text}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">+1 2345 67 89</span>
+                  <span className="itemKey">Slug:</span>
+                  <span className="itemValue">{card.slug}</span>
                 </div>
-                <div className="detailItem">
-                  <span className="itemKey">Address:</span>
-                  <span className="itemValue">
-                    Elton St. 234 Garden Yd. NewYork
-                  </span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">USA</span>
-                </div>
+                {/*<div className="detailItem">*/}
+                {/*  <span className="itemKey">Address:</span>*/}
+                {/*  <span className="itemValue">*/}
+                {/*    Elton St. 234 Garden Yd. NewYork*/}
+                {/*  </span>*/}
+                {/*</div>*/}
+                {/*<div className="detailItem">*/}
+                {/*  <span className="itemKey">Country:</span>*/}
+                {/*  <span className="itemValue">USA</span>*/}
+                {/*</div>*/}
               </div>
             </div>
           </div>
-          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default CardSingle;
+const mapStateToProps = (state) => {
+  return {
+    card: state.cardSelect,
+  };
+};
+
+export default connect(mapStateToProps, {})(CardSingle);

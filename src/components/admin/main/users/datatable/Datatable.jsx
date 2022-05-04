@@ -4,35 +4,32 @@ import { userColumns, userRows } from './datatablesource';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import {listUsers, selectSingle} from '../../../../../action'
+import { deleteUser, listUsers, selectSingle } from '../../../../../action';
 
 const Datatable = (props) => {
-  const navigate = useNavigate()
-  const [data, setData] = useState(props.list);
+  const navigate = useNavigate();
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    props.deleteUser(id, props.token);
   };
 
   const listRender = () => {
-    props.listUsers()
-    setData(props.list)
-  }
-  
-  
-  useEffect(()=>{
-    listRender()
-  },[]) 
+    props.listUsers();
+  };
 
-  console.log(data);
+
+  useEffect(() => {
+    listRender();
+  }, []);
+
 
   console.log(props);
 
   const select = (params) => {
-    
-    props.selectSingle(params.row)
-    navigate('/admin/users/view')
-  } 
+
+    props.selectSingle(params.row);
+    navigate('/admin/users/view');
+  };
 
   const actionColumn = [
     {
@@ -42,9 +39,9 @@ const Datatable = (props) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            
-              <div className="viewButton" onClick={()=>select(params)}>View</div>
-            
+
+            <div className="viewButton" onClick={() => select(params)}>View</div>
+
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
@@ -59,13 +56,13 @@ const Datatable = (props) => {
 
   const loader = () => {
     return (
-      <div className='text-center'>
+      <div className="text-center">
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
-      </div>  
-    )
-  }
+      </div>
+    );
+  };
 
 
   return (
@@ -78,26 +75,27 @@ const Datatable = (props) => {
       </div>
       {/* {
         data.lenght > 0 ?  */}
-          <DataGrid
-            className="datagrid"
-            getRowId={(row)=> row._id}
-            rows={props.list}
-            columns={userColumns.concat(actionColumn)}
-            pageSize={9}
-            rowsPerPageOptions={[9]}
-            checkboxSelection
-            // loading
-            // {...data}
-          />
-      
+      <DataGrid
+        className="datagrid"
+        getRowId={(row) => row._id}
+        rows={props.list}
+        columns={userColumns.concat(actionColumn)}
+        pageSize={9}
+        rowsPerPageOptions={[9]}
+        checkboxSelection
+        // loading
+        // {...data}
+      />
+
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-      list: state.userList
-  }
- }
+    list: state.userList,
+    token: state.token,
+  };
+};
 
-export default connect(mapStateToProps, {listUsers, selectSingle})(Datatable);
+export default connect(mapStateToProps, { listUsers, selectSingle, deleteUser })(Datatable);

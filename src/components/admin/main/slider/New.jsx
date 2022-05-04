@@ -1,12 +1,13 @@
-import "./new.scss";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+import './new.scss';
+import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
+import { useState } from 'react';
 
 const SliderNew = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState('');
 
   return (
     <div className="new">
+      <div className="newContainer">
         <div className="top">
           <h1>{title}</h1>
         </div>
@@ -16,7 +17,7 @@ const SliderNew = ({ inputs, title }) => {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
               }
               alt=""
             />
@@ -31,7 +32,7 @@ const SliderNew = ({ inputs, title }) => {
                   type="file"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
+                  style={{ display: 'none' }}
                 />
               </div>
 
@@ -41,10 +42,11 @@ const SliderNew = ({ inputs, title }) => {
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-              <button type='submit'>Send</button>
+              <button type="submit">Send</button>
             </form>
           </div>
         </div>
+      </div>
     </div>
   );
 };

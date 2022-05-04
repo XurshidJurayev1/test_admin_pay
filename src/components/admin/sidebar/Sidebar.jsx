@@ -21,11 +21,11 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { DarkModeContext } from '../../../context/darkModeContext';
 import { connect } from 'react-redux';
-import {logoutUser} from '../../../action'
+import { logoutUser } from '../../../action';
 
 const Sidebar = (props) => {
   const { dispatch, sidebar } = useContext(DarkModeContext);
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
   const [slider1, setSlider1] = useState(false);
   const [card1, setCard1] = useState(window.innerWidth);
@@ -65,9 +65,9 @@ const navigate = useNavigate()
   };
 
   const logout = () => {
-    navigate('/login')
-    props.logoutUser()
-  }
+    navigate('/login');
+    props.logoutUser();
+  };
 
 
   return (
@@ -84,11 +84,11 @@ const navigate = useNavigate()
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <Link to='/'>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/admin">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
           </Link>
           <Link to="/admin/slider/list" style={{ textDecoration: 'none' }}>
             <li>
@@ -114,10 +114,10 @@ const navigate = useNavigate()
 
 
           {/* <Link  style={{ textDecoration: 'none' }}> */}
-            <li>
-              <StoreIcon className="icon" />
-              <span>Products</span>
-            </li>
+          <li>
+            <StoreIcon className="icon" />
+            <span>Products</span>
+          </li>
           {/* </Link> */}
           <li>
             <CreditCardIcon className="icon" />
@@ -164,18 +164,18 @@ const navigate = useNavigate()
         <div
           className="colorOption"
           onClick={() => dispatch({ type: 'LIGHT' })}
-        ></div>
+        />
         <div
           className="colorOption"
           onClick={() => dispatch({ type: 'DARK' })}
-        ></div>
+        />
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return {}
-}
+  return {};
+};
 
-export default connect(mapStateToProps, {logoutUser})(Sidebar);
+export default connect(mapStateToProps, { logoutUser })(Sidebar);

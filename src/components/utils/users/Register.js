@@ -6,9 +6,9 @@ import {
   MDBBtn,
   MDBFile,
 } from 'mdb-react-ui-kit';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {registerAction} from '../../../action'
+import { registerAction } from '../../../action';
 
 
 const initialstate = {
@@ -18,6 +18,7 @@ const initialstate = {
   file: '',
 };
 const Register = (props) => {
+  const navigate = useNavigate();
   const container = useRef(null);
   const [user, setUser] = useState(initialstate);
   useEffect(() => {
@@ -30,9 +31,11 @@ const Register = (props) => {
     });
   }, []);
 
+
   const submit = (e) => {
     e.preventDefault();
-    props.registerAction(user)
+    props.registerAction(user);
+    navigate('/login');
   };
 
   console.log(props);
@@ -56,7 +59,6 @@ const Register = (props) => {
                 onChange={(e) => setUser({ ...user, name: e.target.value })}
                 className="mb-4" type="text" id="form1Example2" label="Name" />
               <MDBFile
-                value={user.file}
                 onChange={(e) => setUser({ ...user, file: e.target.files[0] })}
                 label="Avatar" id="customFile" className="mb-4" />
               <MDBInput
@@ -84,11 +86,10 @@ const Register = (props) => {
 };
 
 
-
 const mapStateToProps = (state) => {
-  return{
-    reg: state.register
-  }
-}
+  return {
+    reg: state.register,
+  };
+};
 
-export default connect(mapStateToProps, {registerAction})(Register);
+export default connect(mapStateToProps, { registerAction })(Register);

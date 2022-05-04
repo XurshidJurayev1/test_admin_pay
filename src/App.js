@@ -61,6 +61,7 @@ const App = (props) => {
   //   setAdmin(false)
   // }
   // console.log(props);
+  console.log(darkMode);
 
   return (
     <div className={darkMode ? 'app dark' : 'app'}>
@@ -99,6 +100,13 @@ const App = (props) => {
 
             </Route>
             <Route path="card">
+              <Route path="list" element={<CardList />} />
+              <Route path="new" element={<CardNew />} />
+              <Route path="view" element={<CardSingle />} />
+              <Route path="edit" element={<CardEdit />} />
+
+            </Route>
+            <Route path="slider">
               <Route path="list" element={<CardList />} />
               <Route path="new" element={<CardNew />} />
               <Route path="view" element={<CardSingle />} />

@@ -1,8 +1,9 @@
-import "./single.scss";
+import './single.scss';
 
 const SliderSingle = () => {
   return (
     <div className="single">
+      <div className="singleContainer">
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
@@ -36,7 +37,8 @@ const SliderSingle = () => {
               </div>
             </div>
           </div>
-          </div>
+        </div>
+      </div>
     </div>
   );
 };

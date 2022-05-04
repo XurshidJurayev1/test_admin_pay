@@ -1,14 +1,37 @@
-import "./new.scss";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+import './new.scss';
+import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateCard } from '../../../../action';
 
-const CardEdit = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
+const CardEdit = (props) => {
+  const navigate = useNavigate();
+  const [card, setCard] = useState({
+    title: props.card.title,
+    text: props.card.text,
+    slug: props.card.slug,
+  });
+  const [file, setFile] = useState('');
+
+  const submit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append('file', file);
+    formData.append('title', card.title);
+    formData.append('text', card.text);
+    formData.append('slug', card.slug);
+    props.updateCard(props.card._id, formData, props.token);
+    navigate('/admin/card/list');
+  };
 
   return (
     <div className="new">
+      <div className="newContainer">
         <div className="top">
-          <h1>{title}</h1>
+          <h1>Add New Card</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -16,13 +39,13 @@ const CardEdit = ({ inputs, title }) => {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
               }
               alt=""
             />
           </div>
           <div className="right">
-            <form>
+            <form onSubmit={submit}>
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -31,22 +54,44 @@ const CardEdit = ({ inputs, title }) => {
                   type="file"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
+                  style={{ display: 'none' }}
                 />
               </div>
 
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
-                </div>
-              ))}
-              <button>Send</button>
+
+              <div className="formInput">
+                <label>Title</label>
+                <input type="text" placeholder="please write title"
+                       value={card.title}
+                       onChange={(e) => setCard({ ...card, title: e.target.value })} />
+              </div>
+              <div className="formInput">
+                <label>Text</label>
+                <input type="text" placeholder="please write text"
+                       value={card.text}
+                       onChange={(e) => setCard({ ...card, text: e.target.value })}
+                />
+              </div>
+              <div className="formInput">
+                <label>Slug</label>
+                <input type="link" placeholder="please write link"
+                       value={card.slug}
+                       onChange={(e) => setCard({ ...card, slug: e.target.value })} />
+              </div>
+
+              <button type="submit">Send</button>
             </form>
           </div>
         </div>
       </div>
+    </div>
   );
 };
 
-export default CardEdit;
+const mapStateToProps = (state) => {
+  return {
+    card: state.cardSelect,
+  };
+};
+
+export default connect(mapStateToProps, { updateCard })(CardEdit);

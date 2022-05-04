@@ -37,10 +37,10 @@ const UserView = (props) => {
                     {user.status}
                   </span>
                 </div>
-                <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">UZB</span>
-                </div>
+                {/*<div className="detailItem">*/}
+                {/*  <span className="itemKey">Country:</span>*/}
+                {/*  <span className="itemValue">UZB</span>*/}
+                {/*</div>*/}
               </div>
             </div>
           </div>
