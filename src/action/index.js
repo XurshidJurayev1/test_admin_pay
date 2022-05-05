@@ -65,7 +65,7 @@ export const updateAdmin = (admin, token) => async (dispatch) => {
 
 
 export const deleteUser = (id, token) => async (dispatch) => {
-  const res = await api.delete(`/user/${id}`, {
+  const res = await api.get(`/user/${id}`, {
     headers: {
       Authorization: 'Bearer' + ' ' + token,
     },
