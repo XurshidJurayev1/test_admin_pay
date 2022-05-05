@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 // import { Link } from "react-router-dom";
 import './view.scss';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import BlockIcon from '@mui/icons-material/Block';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const UserView = (props) => {
   const user = props.user;
@@ -36,9 +39,26 @@ const UserView = (props) => {
                 <div className="detailItem">
                   <span className="itemKey">status:</span>
                   <span className="itemValue">
+                    <RadioButtonCheckedIcon sx={user.status ? { color: 'green' } : { color: 'red' }} />
                     {`${user.status}`}
                   </span>
                 </div>
+                <div className="detailItem">
+                  <span className="itemKey">status Toggle:</span>
+                  {user.status_toggle === 1 ?
+                    <span className="itemValue">
+                    <CheckCircleOutlineIcon sx={{ color: 'green' }} />
+                      {`${user.status_toggle}`}
+                    </span>
+                    :
+                    <span className="itemValue">
+                    <BlockIcon sx={{ color: 'red' }} />
+                      {`${user.status_toggle}`}
+                    </span>
+                  }
+                </div>
+
+
                 {/*<div className="detailItem">*/}
                 {/*  <span className="itemKey">Country:</span>*/}
                 {/*  <span className="itemValue">UZB</span>*/}

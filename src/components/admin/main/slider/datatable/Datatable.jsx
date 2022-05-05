@@ -3,13 +3,17 @@ import { DataGrid } from '@mui/x-data-grid';
 import { userColumns, userRows } from './datatablesource';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { deleteSlider, listSlider, selectSlider } from '../../../../../action';
 
-const Datatable = () => {
+const Datatable = (props) => {
   const [data, setData] = useState(userRows);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    props.deleteSlider(id, props.token);
+    props.listSlider();
   };
+
 
   const actionColumn = [
     {
@@ -19,7 +23,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: 'none' }}>
+            <Link to="/admin/slider/view" style={{ textDecoration: 'none' }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -43,7 +47,8 @@ const Datatable = () => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={props.list}
+        getRowId={(row) => row._id}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
@@ -53,4 +58,18 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+const mapSteToProps = (state) => {
+  return {
+    list: state.sliderList,
+    slider: state.slider,
+    token: state.token,
+  };
+
+};
+
+export default connect(mapSteToProps, {
+  selectSlider,
+  deleteSlider,
+  listSlider,
+
+})(Datatable);

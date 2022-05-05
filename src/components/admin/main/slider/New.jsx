@@ -1,8 +1,12 @@
 import './new.scss';
 import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { addSlider } from '../../../../action';
+import { useNavigate } from 'react-router-dom';
 
-const SliderNew = ({ inputs, title }) => {
+const SliderNew = (props) => {
+  const navigate = useNavigate();
   const [slider, setSlider] = useState({
     title: '',
     text: '',
@@ -13,14 +17,18 @@ const SliderNew = ({ inputs, title }) => {
     e.preventDefault();
     const formdata = new FormData();
 
-
+    formdata.append('file', file);
+    formdata.append('title', slider.title);
+    formdata.append('text', slider.text);
+    props.addSlider(formdata, props.token);
+    navigate('/admin/slider/list');
   };
 
   return (
     <div className="new">
       <div className="newContainer">
         <div className="top">
-          <h1>{title}</h1>
+          <h1>Add Slider</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -73,4 +81,10 @@ const SliderNew = ({ inputs, title }) => {
   );
 };
 
-export default SliderNew;
+const mapStateToProps = (state) => {
+  return {
+    token: state.token,
+  };
+};
+
+export default connect(mapStateToProps, { addSlider })(SliderNew);

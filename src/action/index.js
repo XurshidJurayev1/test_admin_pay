@@ -129,7 +129,7 @@ export const addSlider = (card, token) => async (dispatch) => {
 };
 
 export const deleteSlider = (id, token) => async (dispatch) => {
-  const res = await api.get(`/slider/delete/${id}`, {
+  const res = await api.delete(`/slider/delete/${id}`, {
     headers: { Authorization: token },
   });
   dispatch({
