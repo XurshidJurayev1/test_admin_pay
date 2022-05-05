@@ -16,7 +16,7 @@ const Datatable = (props) => {
 
   useEffect(() => {
     props.listCard();
-  }, [props.list]);
+  }, []);
 
   console.log(props);
 
