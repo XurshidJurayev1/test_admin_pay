@@ -1,24 +1,23 @@
 import './datatable.scss';
 import { DataGrid } from '@mui/x-data-grid';
-import { userColumns } from './datatablesource';
-import { Link, useNavigate } from 'react-router-dom';
+import { userColumns, userRows } from './datatablesource';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { deleteSlider, listSlider, selectSlider } from '../../../../../action';
-import { sliderList } from '../../../../../reducers/adminReducers';
-import { useEffect } from 'react';
+import { deleteBlog, listBlog, selectBlog } from '../../../../../action';
 
 const Datatable = (props) => {
-  const navigate = useNavigate();
+
   const handleDelete = (id) => {
-    props.deleteSlider(id, props.token);
-    props.listSlider();
+    props.deleteBlog(id, props.token);
+    props.listBlog();
   };
 
-  console.log(props);
-
   useEffect(() => {
-    props.listSlider();
-  }, []);
+    props.listBlog();
+  }, [props.list]);
+
+  console.log(props);
 
 
   const actionColumn = [
@@ -29,8 +28,8 @@ const Datatable = (props) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/admin/slider/view" style={{ textDecoration: 'none' }}>
-              <div className="viewButton" onClick={() => props.selectSlider(params.row)}>View</div>
+            <Link to="/admin/card/view" style={{ textDecoration: 'none' }}>
+              <div className="viewButton" onClick={() => props.selectBlog(params.row)}>View</div>
             </Link>
             <div
               className="deleteButton"
@@ -46,15 +45,15 @@ const Datatable = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Slider List
-        <Link to="/admin/slider/new" className="link">
+        Add New Card
+        <Link to="/admin/card/new" className="link">
           Add New
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={props.list}
-        getRowId={(row) => row._id}
+        getRowId={row => row._id}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
@@ -64,18 +63,12 @@ const Datatable = (props) => {
   );
 };
 
-const mapSteToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    list: state.sliderList,
-    slider: state.slider,
+    list: state.blogList,
     token: state.token,
   };
 
 };
 
-export default connect(mapSteToProps, {
-  selectSlider,
-  deleteSlider,
-  listSlider,
-
-})(Datatable);
+export default connect(mapStateToProps, { listBlog, deleteBlog, selectBlog })(Datatable);

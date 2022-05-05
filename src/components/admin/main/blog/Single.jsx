@@ -1,39 +1,39 @@
 import './single.scss';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { ImageApi } from '../../../../Api/ImageApi';
 
-const SliderSingle = (props) => {
-  const navigate = useNavigate();
-  const slider = props.slider;
-
-  console.log(slider);
+const BlogSingle = (props) => {
+  const card = props.card;
   return (
     <div className="single">
       <div className="singleContainer">
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to="/admin/card/edit">
+              <div className="editButton">Edit</div>
+            </Link>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
                 src={
-                  slider.image_path.length > 0
-                    ? `${ImageApi}${slider.image_path}`
+                  card.image_path
+                    ? `${ImageApi}${card.image_path}`
                     : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+
                 }
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                {/*<h1 className="itemTitle">Jane Doe</h1>*/}
-                <div className="detailItem">
-                  <span className="itemKey">Title:</span>
-                  <span className="itemValue">{slider.title}</span>
-                </div>
+                <h1 className="itemTitle">{card.title}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Text:</span>
-                  <span className="itemValue">{slider.text}</span>
+                  <span className="itemValue">{card.text}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Slug:</span>
+                  <span className="itemValue">{card.slug}</span>
                 </div>
                 {/*<div className="detailItem">*/}
                 {/*  <span className="itemKey">Address:</span>*/}
@@ -45,10 +45,6 @@ const SliderSingle = (props) => {
                 {/*  <span className="itemKey">Country:</span>*/}
                 {/*  <span className="itemValue">USA</span>*/}
                 {/*</div>*/}
-
-                <button className="btn btn-primary" type="button" onClick={() => navigate('/admin/slider/list')}> Back
-                  to sldier list
-                </button>
               </div>
             </div>
           </div>
@@ -60,8 +56,8 @@ const SliderSingle = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    slider: state.sliderSelect,
+    card: state.cardSelect,
   };
 };
 
-export default connect(mapStateToProps, {})(SliderSingle);
+export default connect(mapStateToProps, {})(BlogSingle);

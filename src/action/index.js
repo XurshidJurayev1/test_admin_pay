@@ -66,7 +66,9 @@ export const updateAdmin = (admin, token) => async (dispatch) => {
 
 export const deleteUser = (id, token) => async (dispatch) => {
   const res = await api.delete(`/user/${id}`, {
-    headers: { Authorization: token },
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
   });
   dispatch({
     type: 'DELETE_USER',
@@ -85,7 +87,9 @@ export const listCard = () => async (dispatch) => {
 
 export const addCard = (card, token) => async (dispatch) => {
   const res = await api.post('/card/create', card, {
-    headers: { Authorization: token },
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
   });
   dispatch({
     type: 'ADD_CARD',
@@ -95,7 +99,9 @@ export const addCard = (card, token) => async (dispatch) => {
 
 export const deleteCard = (id, token) => async (dispatch) => {
   const res = await api.get(`/card/delete/${id}`, {
-    headers: { Authorization: token },
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
   });
   dispatch({
     type: 'DELETE_CARD',
@@ -114,7 +120,9 @@ export const selectCard = (card) => async (dispatch) => {
 
 export const updateCard = (id, card, token) => async (dispatch) => {
   const res = await api.put(`/card/update/${id}`, card, {
-    headers: { Authorization: token },
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
   });
   dispatch({
     type: 'UPDATE_CARD',
@@ -135,7 +143,9 @@ export const listSlider = () => async (dispatch) => {
 
 export const addSlider = (card, token) => async (dispatch) => {
   const res = await api.post('/slider/create', card, {
-    headers: { Authorization: token },
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
   });
   dispatch({
     type: 'ADD_SLIDER',
@@ -145,7 +155,9 @@ export const addSlider = (card, token) => async (dispatch) => {
 
 export const deleteSlider = (id, token) => async (dispatch) => {
   const res = await api.delete(`/slider/delete/${id}`, {
-    headers: { Authorization: token },
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
   });
   dispatch({
     type: 'DELETE_SLIDER',
@@ -164,7 +176,9 @@ export const selectSlider = (card) => async (dispatch) => {
 
 export const updateSlider = (id, card, token) => async (dispatch) => {
   const res = await api.put(`/slider/update/${id}`, card, {
-    headers: { Authorization: token },
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
   });
   dispatch({
     type: 'UPDATE_SLIDER',
@@ -173,6 +187,61 @@ export const updateSlider = (id, card, token) => async (dispatch) => {
 
 };
 
+// ----- blog -----
+
+export const listBlog = () => async (dispatch) => {
+  const res = await api.get('/slider/list');
+  dispatch({
+    type: 'LIST_BLOG',
+    payload: res.data,
+  });
+};
+
+export const addBlog = (card, token) => async (dispatch) => {
+  const res = await api.post('/slider/create', card, {
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
+  });
+  dispatch({
+    type: 'ADD_BLOG',
+    payload: res.data,
+  });
+};
+
+export const deleteBlog = (id, token) => async (dispatch) => {
+  const res = await api.delete(`/slider/delete/${id}`, {
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
+  });
+  dispatch({
+    type: 'DELETE_BLOG',
+    payload: res.data,
+  });
+
+};
+
+export const selectBlog = (card) => async (dispatch) => {
+  dispatch({
+    type: 'SELECT_BLOG',
+    payload: card,
+  });
+
+};
+
+export const updateBlog = (id, card, token) => async (dispatch) => {
+  const res = await api.put(`/slider/update/${id}`, card, {
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
+  });
+  dispatch({
+    type: 'UPDATE_BLOG',
+    payload: res.data,
+  });
+
+};
 
 
 

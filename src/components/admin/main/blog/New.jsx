@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { addCard } from '../../../../action';
 
 
-const CardNew = (props) => {
+const BlogNew = (props) => {
   const navigate = useNavigate();
   const [card, setCard] = useState({
     title: '',
@@ -97,4 +97,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { addCard })(CardNew);
+export default connect(mapStateToProps, { addCard })(BlogNew);

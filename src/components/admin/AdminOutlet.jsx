@@ -12,7 +12,7 @@ const AdminOutlet = (props) => {
   const { sidebar } = useContext(DarkModeContext);
   const [width, setWidth] = useState(window.innerWidth);
 
-  const geters = () => {
+  const render = () => {
     props.listUsers();
     props.listCard();
     props.listSlider();
@@ -28,7 +28,7 @@ const AdminOutlet = (props) => {
     return () => {
       window.addEventListener('resize', handleWidth);
     };
-    geters();
+    render();
   }, []);
 
 

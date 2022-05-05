@@ -68,3 +68,35 @@ export const slider = (state = {}, action) => {
       return state;
   }
 };
+
+
+export const blogList = (state = [], action) => {
+  switch (action.type) {
+    case 'LIST_BLOG' :
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const blogSelect = (state = {}, action) => {
+  switch (action.type) {
+    case 'SELECT_BLOG' :
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const blog = (state = {}, action) => {
+  switch (action.type) {
+    case 'ADD_BLOG':
+      return action.payload;
+    case 'DELETE_BLOG':
+      return action.payload;
+    case 'UPDATE_BLOG':
+      return action.payload;
+    default:
+      return state;
+  }
+};

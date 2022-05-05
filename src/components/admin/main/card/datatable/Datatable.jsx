@@ -11,13 +11,12 @@ const Datatable = (props) => {
 
   const handleDelete = (id) => {
     props.deleteCard(id, props.token);
-    console.log(id);
     props.listCard();
   };
 
   useEffect(() => {
     props.listCard();
-  }, []);
+  }, [props.list]);
 
   console.log(props);
 

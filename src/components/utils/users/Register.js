@@ -34,8 +34,17 @@ const Register = (props) => {
 
   const submit = (e) => {
     e.preventDefault();
-    props.registerAction(user);
+    const formadata = new FormData();
+    formadata.append('file', user.file);
+    formadata.append('name', user.name);
+    formadata.append('email', user.email);
+    formadata.append('password', user.password);
+    // if (user.file) {
+    props.registerAction(formadata);
     navigate('/login');
+    // } else {
+    //   window.alert('Please select image');
+    // }
   };
 
   console.log(props);
@@ -58,9 +67,10 @@ const Register = (props) => {
                 value={user.name}
                 onChange={(e) => setUser({ ...user, name: e.target.value })}
                 className="mb-4" type="text" id="form1Example2" label="Name" />
-              <MDBFile
-                onChange={(e) => setUser({ ...user, file: e.target.files[0] })}
-                label="Avatar" id="customFile" className="mb-4" />
+              {/*<MDBFile*/}
+              {/*  required={true}*/}
+              {/*  onChange={(e) => setUser({ ...user, file: e.target.files[0] })}*/}
+              {/*  label="Avatar" id="customFile" className="mb-4" />*/}
               <MDBInput
                 value={user.email}
                 onChange={(e) => setUser({ ...user, email: e.target.value })}

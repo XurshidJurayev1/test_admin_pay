@@ -35,6 +35,10 @@ import SliderSingle from './components/admin/main/slider/Single';
 import SliderEdit from './components/admin/main/slider/SliderEdit';
 import AdminProfile from './components/admin/main/profile/Profile';
 import ProfileEdit from './components/admin/main/profile/ProfileEdit';
+import BlogList from './components/admin/main/blog/List';
+import BlogNew from './components/admin/main/blog/New';
+import BlogSingle from './components/admin/main/blog/Single';
+import BlogEdit from './components/admin/main/blog/Edit';
 
 
 const App = (props) => {
@@ -127,6 +131,14 @@ const App = (props) => {
               <Route path="edit" element={<SliderEdit />} />
 
             </Route>
+            <Route path="blog">
+              <Route path="list" element={<BlogList />} />
+              <Route path="new" element={<BlogNew />} />
+              <Route path="view" element={<BlogSingle />} />
+              <Route path="edit" element={<BlogEdit />} />
+
+            </Route>
+
             <Route path="*" element={<Notfoundpage />} />
           </Route>
         }

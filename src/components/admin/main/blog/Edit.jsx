@@ -3,15 +3,14 @@ import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUpload
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addCard } from '../../../../action';
+import { updateCard } from '../../../../action';
 
-
-const CardNew = (props) => {
+const BlogEdit = (props) => {
   const navigate = useNavigate();
   const [card, setCard] = useState({
-    title: '',
-    text: '',
-    slug: '',
+    title: props.card.title,
+    text: props.card.text,
+    slug: props.card.slug,
   });
   const [file, setFile] = useState('');
 
@@ -24,8 +23,8 @@ const CardNew = (props) => {
     formData.append('title', card.title);
     formData.append('text', card.text);
     formData.append('slug', card.slug);
-    props.addCard(formData, props.token);
-    // navigate('/admin/card/list');
+    props.updateCard(props.card._id, formData, props.token);
+    navigate('/admin/card/list');
   };
 
   return (
@@ -91,10 +90,8 @@ const CardNew = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    card: state.card,
-    token: state.token,
+    card: state.cardSelect,
   };
 };
 
-
-export default connect(mapStateToProps, { addCard })(CardNew);
+export default connect(mapStateToProps, { updateCard })(BlogEdit);
