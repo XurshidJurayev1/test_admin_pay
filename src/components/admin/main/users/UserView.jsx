@@ -4,8 +4,10 @@ import './view.scss';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import BlockIcon from '@mui/icons-material/Block';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserView = (props) => {
+  const navigate = useNavigate();
   const user = props.user;
   console.log(user);
   console.log(user.status);
@@ -14,7 +16,9 @@ const UserView = (props) => {
       <div className="singleContainer">
         <div className="top">
           <div className="left">
-            {/* <Link to='/admin/users/edit'><div className="editButton">Edit</div></Link> */}
+            {/*<Link to="/admin/users/edit">*/}
+            {/*  <div className="editButton">Edit</div>*/}
+            {/*</Link>*/}
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -58,6 +62,16 @@ const UserView = (props) => {
                   }
                 </div>
 
+
+                <button
+                  style={{
+                    marginTop: '20px',
+                  }}
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => navigate('/admin/users/list')}> Back to
+                  users list
+                </button>
 
                 {/*<div className="detailItem">*/}
                 {/*  <span className="itemKey">Country:</span>*/}

@@ -90,6 +90,16 @@ const Sidebar = (props) => {
               <span>Dashboard</span>
             </li>
           </Link>
+
+
+          <p className="title">LISTS</p>
+
+          <Link to="/admin/users/list" style={{ textDecoration: 'none' }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
           <Link to="/admin/slider/list" style={{ textDecoration: 'none' }}>
             <li>
               <PanoramaPhotosphereIcon className="icon" />
@@ -102,16 +112,6 @@ const Sidebar = (props) => {
               <span>CARD</span>
             </li>
           </Link>
-
-          <p className="title">LISTS</p>
-
-          <Link to="/admin/users/list" style={{ textDecoration: 'none' }}>
-            <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Users</span>
-            </li>
-          </Link>
-
 
           {/* <Link  style={{ textDecoration: 'none' }}> */}
           {/*<li>*/}
@@ -150,10 +150,12 @@ const Sidebar = (props) => {
           {/*  <span>Settings</span>*/}
           {/*</li>*/}
           <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
+          <Link to="/admin/profile">
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
           <li onClick={logout}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>

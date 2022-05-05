@@ -40,14 +40,29 @@ export const selectSingle = user => (dispatch) => {
 };
 
 export const updateUser = (user, id, token) => async (dispatch) => {
-  const res = await api.put(`/admin/update`, user, {
-    headers: { Authorization: token },
+  const res = await api.put(`/user/update`, user, {
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
   });
   dispatch({
     type: 'UPDATE_USER',
     payload: res.data,
   });
 };
+
+export const updateAdmin = (admin, token) => async (dispatch) => {
+  const res = await api.put('/admin/update', admin, {
+    headers: {
+      Authorization: 'Bearer' + ' ' + token,
+    },
+  });
+  dispatch({
+    type: 'ADMIN_UPDATE',
+    payload: res.data,
+  });
+};
+
 
 export const deleteUser = (id, token) => async (dispatch) => {
   const res = await api.delete(`/user/${id}`, {

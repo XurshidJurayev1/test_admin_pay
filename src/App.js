@@ -33,6 +33,8 @@ import SliderList from './components/admin/main/slider/List';
 import SliderNew from './components/admin/main/slider/New';
 import SliderSingle from './components/admin/main/slider/Single';
 import SliderEdit from './components/admin/main/slider/SliderEdit';
+import AdminProfile from './components/admin/main/profile/Profile';
+import ProfileEdit from './components/admin/main/profile/ProfileEdit';
 
 
 const App = (props) => {
@@ -97,6 +99,13 @@ const App = (props) => {
           admin &&
           <Route path="/admin/*" element={<AdminOutlet />}>
             <Route index element={<Dashboard />} />
+            <Route path="profile">
+              <Route index element={<AdminProfile />} />
+              <Route
+                path="edit"
+                element={<ProfileEdit />}
+              />
+            </Route>
             <Route path="users">
               <Route path="list" element={<UsersList />} />
               <Route path="new" element={<UsersNew />} />

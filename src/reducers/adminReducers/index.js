@@ -1,3 +1,12 @@
+export const adminUpdate = (state = {}, action) => {
+  switch (action.type) {
+    case 'ADMIN_UPDATE' :
+      return action.payload;
+    default :
+      return state;
+  }
+};
+
 export const cardList = (state = [], action) => {
   switch (action.type) {
     case 'LIST_CARD' :

@@ -1,6 +1,9 @@
 import './single.scss';
+import { connect } from 'react-redux';
 
-const SliderSingle = () => {
+const SliderSingle = (props) => {
+
+  const slider = props.slider;
   return (
     <div className="single">
       <div className="singleContainer">
@@ -10,7 +13,11 @@ const SliderSingle = () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                src={
+                  slider.image_path
+                    ? `https://server-asiapay.herokuapp.com/${user.image_path}`
+                    : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+                }
                 alt=""
                 className="itemImg"
               />
@@ -43,4 +50,8 @@ const SliderSingle = () => {
   );
 };
 
-export default SliderSingle;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+export default connect(mapStateToProps, {})(SliderSingle);

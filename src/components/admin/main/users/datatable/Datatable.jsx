@@ -68,7 +68,7 @@ const Datatable = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
+        Users list
         <Link to="/admin/users/new" className="link">
           Add New
         </Link>

@@ -1,14 +1,12 @@
 import './datatable.scss';
 import { DataGrid } from '@mui/x-data-grid';
-import { userColumns, userRows } from './datatablesource';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { userColumns } from './datatablesource';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteSlider, listSlider, selectSlider } from '../../../../../action';
 
 const Datatable = (props) => {
-  const [data, setData] = useState(userRows);
-
+  const navigate = useNavigate();
   const handleDelete = (id) => {
     props.deleteSlider(id, props.token);
     props.listSlider();
@@ -24,7 +22,7 @@ const Datatable = (props) => {
         return (
           <div className="cellAction">
             <Link to="/admin/slider/view" style={{ textDecoration: 'none' }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton" onClick={() => props.selectSlider(params.row)}>View</div>
             </Link>
             <div
               className="deleteButton"
@@ -40,7 +38,7 @@ const Datatable = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
+        Slider List
         <Link to="/admin/slider/new" className="link">
           Add New
         </Link>
