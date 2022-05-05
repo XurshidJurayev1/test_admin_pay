@@ -14,19 +14,19 @@ export const userColumns = [
     headerName: 'slug',
     width: 230,
   },
-  {
-    field: 'image_path',
-    headerName: 'Image',
-    width: 230,
-    renderCell: (params) => {
-      return (
-        <div className="cellWithImg">
-          <img className="cellImg" src={`${ImageApi}${params.row.image_path}`} alt={params.row.image_name} />
-          {/*{params.row.username}*/}
-        </div>
-      );
-    },
-  },
+  // {
+  //   field: 'image_path',
+  //   headerName: 'Image',
+  //   width: 230,
+  //   renderCell: (params) => {
+  //     return (
+  //       <div className="cellWithImg">
+  //         <img className="cellImg" src={`${ImageApi}${params.row.image_path}`} alt={params.row.image_name} />
+  //         {/*{params.row.username}*/}
+  //       </div>
+  //     );
+  //   },
+  // },
   // {
   //   field: 'status',
   //   headerName: 'Status',

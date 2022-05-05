@@ -10,12 +10,12 @@ export const userColumns = [
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={
-            params.row.image_path ?
-              `${ImageApi}${params.row.image_path}`
-              :
-              'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
-          } alt="" />
+          {/*<img className="cellImg" src={*/}
+          {/*  params.row.image_path ?*/}
+          {/*    `${ImageApi}${params.row.image_path}`*/}
+          {/*    :*/}
+          {/*    'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'*/}
+          {/*} alt="" />*/}
           {params.row.name}
         </div>
       );

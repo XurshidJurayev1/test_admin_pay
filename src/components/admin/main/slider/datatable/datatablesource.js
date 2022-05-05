@@ -12,19 +12,19 @@ export const userColumns = [
     headerName: 'Text',
     width: 230,
   },
-  {
-    field: 'image_path',
-    headerName: 'Image',
-    width: 230,
-    renderCell: (params) => {
-      return (
-        <div className="cellWithImg">
-          <img className="cellImg" src={`${ImageApi}${params.row.image_path}`} alt="avatar" />
-          {params.row.image_name}
-        </div>
-      );
-    },
-  },
+  // {
+  //   field: 'image_path',
+  //   headerName: 'Image',
+  //   width: 230,
+  //   renderCell: (params) => {
+  //     return (
+  //       <div className="cellWithImg">
+  //         <img className="cellImg" src={`${ImageApi}${params.row.image_path}`} alt="avatar" />
+  //         {params.row.image_name}
+  //       </div>
+  //     );
+  //   },
+  // },
 
   // {
   //   field: 'age',
