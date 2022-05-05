@@ -26,11 +26,11 @@ export const userColumns = [
     headerName: "role",
     width: 100,
   },
-  {
-    field: "salt",
-    headerName: "salt",
-    width: 100,
-  },
+  // {
+  //   field: "salt",
+  //   headerName: "salt",
+  //   width: 100,
+  // },
   // {
   //   field: "status",
   //   headerName: "Status",
