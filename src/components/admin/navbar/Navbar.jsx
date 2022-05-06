@@ -17,7 +17,7 @@ const Navbar = (props) => {
 
 
   return (
-    <div className="navbar">
+    <div className="navbar_admin">
       <div className="wrapper">
         <div className="flex">
           <div className="items sidebar-btn">

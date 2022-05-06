@@ -64,12 +64,8 @@ export const updateAdmin = (admin, token) => async (dispatch) => {
 };
 
 
-export const deleteUser = (id, token) => async (dispatch) => {
-  const res = await api.get(`/user/${id}`, {
-    headers: {
-      Authorization: 'Bearer' + ' ' + token,
-    },
-  });
+export const deleteUser = (id) => async (dispatch) => {
+  const res = await api.get(`/user/delete/${id}`);
   dispatch({
     type: 'DELETE_USER',
     payload: res.data,

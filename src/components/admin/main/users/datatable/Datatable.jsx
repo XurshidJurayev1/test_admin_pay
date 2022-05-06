@@ -10,7 +10,9 @@ const Datatable = (props) => {
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
-    props.deleteUser(id, props.token);
+    props.deleteUser(id);
+    props.listUsers();
+    listRender();
   };
 
   const listRender = () => {
@@ -95,6 +97,7 @@ const mapStateToProps = (state) => {
   return {
     list: state.userList,
     token: state.token,
+    user: state.user,
   };
 };
 

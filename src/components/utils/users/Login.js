@@ -10,14 +10,14 @@ import { connect } from 'react-redux';
 import { loginAction } from '../../../action';
 
 
-const initialstate ={
+const initialstate = {
   email: '',
-  password: ''
-}
+  password: '',
+};
 
 const Login = (props) => {
   const container = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [user, setUser] = useState(initialstate);
   useEffect(() => {
     lottie.loadAnimation({
@@ -31,9 +31,9 @@ const Login = (props) => {
 
 
   const submit = (e) => {
-    e.preventDefault()
-    props.loginAction(user)
-  
+    e.preventDefault();
+    props.loginAction(user);
+
     // if(props.user.role === 'admin' || props.user.role === 1){
     //   navigate('/admin')
     // }else if(props.user.role === "subscripte" || props.user.role === 0){
@@ -42,16 +42,16 @@ const Login = (props) => {
     //   return 
     // }
 
-  } 
+  };
 
-  
+
   console.log(props);
 
-  useEffect(()=> {
-    if(props.user.role === 'admin' ){
-      navigate('/admin')
-    }else if(props.user.role === "subscripte" ){
-      navigate('/')
+  useEffect(() => {
+    if (props.user.role === 'admin') {
+      navigate('/admin');
+    } else if (props.user.role === 'subscripte') {
+      navigate('/');
     }
     // if (props.user.length > 0) {
     //   switch (props.role[0]) {
@@ -65,8 +65,7 @@ const Login = (props) => {
     // } else {
     //   return null;
     // }
-  }, [props.user])
-
+  }, [props.user]);
 
 
   return (
@@ -83,16 +82,16 @@ const Login = (props) => {
 
               <MDBInput
                 value={user.email}
-                onChange={(e)=> setUser({...user, email: e.target.value})}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
                 className="mb-4" type="email" id="form1Example1" label="Email address" />
-              <MDBInput 
+              <MDBInput
                 value={user.password}
-                onChange={(e)=>setUser({...user, password: e.target.value})}
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
                 className="mb-4" type="password" id="form1Example2" label="Password" />
-              <MDBBtn className="login__form-btn" type="submit" block>
+              <MDBBtn className="login__form-btn important_btn" type="submit" block>
                 Войти
               </MDBBtn>
-              <Link to="/register" className="btn btn-success mt-2">Регистация ?</Link>
+              <Link to="/register" className="btn btn-success mt-2 important_btn">Регистация ?</Link>
 
             </form>
           </div>
@@ -106,11 +105,11 @@ const Login = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return{
+  return {
     login: state.login,
     user: state.user,
-  }
-}
+  };
+};
 
 
-export default connect(mapStateToProps, {loginAction})(Login);
+export default connect(mapStateToProps, { loginAction })(Login);

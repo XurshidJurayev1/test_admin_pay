@@ -38,8 +38,8 @@ const Navbar = (props) => {
             <MDBIcon icon="bars" fas />
           </MDBNavbarToggler>
 
-          <MDBCollapse navbar show={showBasic}>
-            <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
+          <MDBCollapse navbar show={showBasic} className="navbar_open">
+            <MDBNavbarNav className="mr-auto mb-2 mb-lg-0" onClick={() => setShowBasic(false)}>
               <MDBNavbarItem className="nabar__item">
                 <Link className="nabar__link nav-link" to="/">
                   Домой
@@ -94,16 +94,16 @@ const Navbar = (props) => {
             {
               props.user.role ?
                 <MDBNavbarItem className="nabar__item d-flex user_name">
-                  <Link to='/profile'>
+                  <Link to="/profile">
                     <h6>
                       {props.user.name}
                     </h6>
                     <img src={
                       props.user.image_path
                         ? URL.createObjectURL(props.user.image_path)
-                        : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                        }
-                    alt={props.user.image_name} className="navbar-avatar-style" />
+                        : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+                    }
+                         alt={props.user.image_name} className="navbar-avatar-style" />
                   </Link>
                 </MDBNavbarItem>
                 :
@@ -116,7 +116,7 @@ const Navbar = (props) => {
                   </Link>
                 </MDBNavbarItem>
             }
-            
+
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>
@@ -125,9 +125,9 @@ const Navbar = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return{
-    user: state.user
-  }
-}
+  return {
+    user: state.user,
+  };
+};
 
 export default connect(mapStateToProps, {})(Navbar);

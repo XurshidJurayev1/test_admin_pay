@@ -79,10 +79,10 @@ const Register = (props) => {
                 value={user.password}
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                 className="mb-4" type="password" id="form1Example4" label="Password" />
-              <MDBBtn className="login__form-btn" type="submit" block>
+              <MDBBtn className="login__form-btn important_btn" type="submit" block>
                 зарегистрироватся
               </MDBBtn>
-              <Link to="/login" className="btn btn-success mt-2">Войти</Link>
+              <Link to="/login" className="btn btn-success mt-2 important_btn">Войти</Link>
 
             </form>
           </div>
