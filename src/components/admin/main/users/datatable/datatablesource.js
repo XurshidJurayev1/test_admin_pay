@@ -32,6 +32,11 @@ export const userColumns = [
     headerName: 'role',
     width: 100,
   },
+  {
+    field: 'date',
+    headerName: 'Created date',
+    width: 100,
+  },
   // {
   //   field: "salt",
   //   headerName: "salt",
