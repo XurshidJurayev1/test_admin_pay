@@ -35,7 +35,7 @@ export const userColumns = [
   {
     field: 'date',
     headerName: 'Created date',
-    width: 100,
+    width: 200,
   },
   // {
   //   field: "salt",
